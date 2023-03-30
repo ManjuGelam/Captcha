@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Captcha Generation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#refreshCaptcha").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "~/Home/CaptchaImage",
+                    cache: false,
+                    success: function (data) {
+                        $("#captchaImage").attr("src", data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Captcha Generation</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <label>Enter Captcha:</label>
+                <input type="text" />
+            </div>
+            <div class="col-4">
+                <img id="captchaImage" src="~/Home/CaptchaImage" />
+            </div>
+            <div class="col-4">
+                <a href="#" id="refreshCaptcha">
+                    <img src="~/images/refreshimg.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
